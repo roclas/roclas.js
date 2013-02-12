@@ -24,3 +24,14 @@ var findRecursive=function (o,name,path,result) {
 }
 
 var findInObject=function(o,name){return findRecursive(o,name,"",[]);}
+
+ function printObject(o){
+        result="";
+        var isArray=(o instanceof Array);
+        for(i in o){
+                result+=(isArray?"":'"'+i+'":')+(typeof o[i]=="object"?printObject(o[i]):'"'+o[i]+'"')+",";
+        }
+        if(isArray)return "["+result.replace(/,$/,"")+"]";
+        else return "{"+result.replace(/,$/,"")+"}";
+      }
+

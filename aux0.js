@@ -23,6 +23,21 @@ var findRecursive=function (o,name,path,result) {
 		return result;
 }
 
+function insert_in_object(o,path,element){
+        path=path.replace(/^\//,"");
+        path=path.replace(/^\.\//,"");
+        path=path.replace(/\/$/,"");
+        var path_arr=path.split("/");
+        var acum_path="";
+        for(i in path_arr){
+          acum_path+="['"+path_arr[i]+"']";
+          eval("if(!o"+acum_path+")o"+
+                acum_path+"={};");
+        }
+        eval("o"+acum_path+"=element");
+}
+
+
 var findInObject=function(o,name){return findRecursive(o,name,"",[]);}
 
  function printObject(o){
